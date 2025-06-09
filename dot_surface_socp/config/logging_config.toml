@@ -1,0 +1,10 @@
+# Logging configuration for dot-surface-socp
+
+[log_levels]
+# Standard logging levels
+debug = 10
+info = 20
+
+# Custom logging levels
+kkt = 11      # debug + 1: Used for KKT iteration information
+scaling = 12  # debug + 2: Used for scaling information

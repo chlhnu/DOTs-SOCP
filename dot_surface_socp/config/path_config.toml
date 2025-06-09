@@ -1,0 +1,9 @@
+[paths]
+# Path to mesh files
+mesh_dir = "dot_surface_socp/data/meshes"
+
+# Path to setting files
+setting_dir = "dot_surface_socp/data/settings"
+
+# Path to camera configuration files
+camera_dir = "dot_surface_socp/data/settings/camera"

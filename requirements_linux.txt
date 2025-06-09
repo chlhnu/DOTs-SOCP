@@ -1,0 +1,12 @@
+jinja2==3.1.6
+kaleido==0.2.1
+matplotlib==3.9.2
+numexpr==2.10.1
+numpy==2.0.2
+pandas==2.2.3
+pymeshlab==2023.12.post3
+pyvista==0.44.2
+scipy==1.14.1
+tomli==2.2.1
+tqdm==4.66.5
+trimesh==4.6.4
