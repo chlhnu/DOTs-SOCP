@@ -1,6 +1,8 @@
 # DOTs-SOCP
 
-**DOTs-SOCP** contains the implementation for solving the dynamical optimal transport (DOT) problem on discrete surface. This repository facilitates research on the algorithm for solving the Second-Order Cone Programming (SOCP) reformulation of DOT problem on triangulated surfaces. It is designed for easy replication of all numerical experiments in our paper.
+**DOTs-SOCP** provides a numerical software for solving the Dynamical Optimal Transport (DOT) problem on discrete surfaces. This repository supports research on efficient algorithms for solving the Second-Order Cone Programming (SOCP) reformulation of the DOT problem over triangulated surfaces. It is designed to enable straightforward replication of all numerical experiments presented in our paper.
+
+
 
 ### Contact
 
@@ -30,7 +32,7 @@ The repository is organized into several main components:
 
 ## Installation
 
-### Setup python environment
+### Setup Python environment
 
 Using `uv` (Recommended).
 1. Install `uv` (if not already installed) using:
@@ -81,7 +83,7 @@ sudo apt-get install -y libosmesa6-dev libgl1-mesa-dev
 
 ### Make (Windows only)
 
-To use the commands for one-click experiment replication, install `make` by running the following command in `Powershell`:
+To use the commands for one-click experiment replication, install `make` by running the following command in `PowerShell`:
 ```powershell
 winget install GnuWin32.Make; [Environment]::SetEnvironmentVariable("PATH", $env:PATH + ";C:\Program Files (x86)\GnuWin32\bin", "User"); $env:PATH += ";C:\Program Files (x86)\GnuWin32\bin"
 ```
@@ -90,7 +92,7 @@ winget install GnuWin32.Make; [Environment]::SetEnvironmentVariable("PATH", $env
 
 ### One-Click Replication
 
-For easy replication of all numerical experiments, we provide convenient one-click command:
+For easy replication of all numerical experiments, we provide a convenient one-click command:
 
 ```bash
 make all
@@ -112,7 +114,7 @@ One can run a specific experiment using `demo.py` with the following optional ar
     1. `--show`: Displays the animation in an interactive window. (Default: `True`)
     3. `--save`: Saves the animation (as a series of `.png` files and a `.mp4` video). (Default: `False`)
 
-For example, run experiment of `knots_5` example using:
+For example, run the experiment of `knots_5` example using:
 
 ```shell
 python demo.py --example=knots_5 --show
