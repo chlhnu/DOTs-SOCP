@@ -2,8 +2,9 @@
 
 ### Liang Chen, Youyicun Lin, and Yuxuan Zhou
 
-This software is designed to solve the Dynamical Optimal Transport (DOT) problem on discrete surfaces. This repository supports research on efficient algorithms for solving the Second-Order Cone Programming (SOCP) reformulation of the DOT problem over triangulated surfaces. It is also designed to enable the straightforward reproduction of all the numerical results presented in the paper, which utilizes an inexact semi-proximal augmented Lagrangian method.
+This open-source software package provides an efficient numerical optimization approach for solving dynamic optimal transport (DOT) problems on general smooth surfaces. It computes the quadratic Wasserstein distance and associated transportation paths by solving a linear second-order cone programming (SOCP) reformulation. The implementation utilizes an inexact semi-proximal augmented Lagrangian method.
 
+This repository enables the straightforward replication of numerical results for our proposed method, as presented in the paper. It offers a robust and highly efficient solution for DOT problems on surfaces. Additionally, this codebase aims to serve as a valuable foundation for future research in optimal transport and related numerical methods.
 
 ### Citation
 
