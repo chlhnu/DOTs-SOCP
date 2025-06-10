@@ -1,9 +1,20 @@
-# DOTs-SOCP
+# DOTs-SOCP -- a Python software for dynamic optimal transport problem on surfaces
 
-**DOTs-SOCP** provides a numerical software for solving the Dynamical Optimal Transport (DOT) problem on discrete surfaces. This repository supports research on efficient algorithms for solving the Second-Order Cone Programming (SOCP) reformulation of the DOT problem over triangulated surfaces. It is designed to enable straightforward replication of all numerical experiments presented in our paper.
+### Liang Chen, Youyicun Lin, and Yuxuan Zhou
+
+This software is designed to solve the Dynamical Optimal Transport (DOT) problem on discrete surfaces. This repository supports research on efficient algorithms for solving the Second-Order Cone Programming (SOCP) reformulation of the DOT problem over triangulated surfaces. It is also designed to enable the straightforward reproduction of all the numerical results presented in the paper, which utilizes an inexact semi-proximal augmented Lagrangian method.
 
 
+### Citation
 
+* **Liang Chen, Youyicun Lin, and YuXuan Zhou**, An efficient augmented Lagrangian method for dynamic optimal transport on surfaces based on second-order cone programming, preprint, 2025.
+
+* **Important note:**
+
+  * The software is still under development, so it will invariably be buggy. We would appreciate your feedback and bug reports.
+
+  * This is research software. It is not currently intended or designed to be general-purpose software.
+ 
 ### Contact
 
 E-mail: chl@hnu.edu.cn
