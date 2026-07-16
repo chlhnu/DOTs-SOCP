@@ -1,6 +1,6 @@
 # DOTs-SOCP
 
-[![arXiv](https://img.shields.io/badge/arXiv-2506.08988-b31b1b.svg)](https://arxiv.org/abs/2506.08988) [![License: AGPL v3](https://img.shields.io/badge/License-AGPL_v3-blue.svg)](LICENSE.txt) [![Python 3.12](https://img.shields.io/badge/Python-3.12-blue.svg)](https://www.python.org/)
+[![arXiv](https://img.shields.io/badge/arXiv-2506.08988-1c1a17.svg)](https://arxiv.org/abs/2506.08988) [![License: AGPL v3](https://img.shields.io/badge/License-AGPL_v3-blue.svg)](LICENSE.txt) [![Python 3.12](https://img.shields.io/badge/Python-3.12-blue.svg)](https://www.python.org/)
 
 <p>
   <img align="middle" alt="Congestion = 0.00" src="./docs/assets/readme/label_c0_00.svg" width="12%" />
@@ -23,7 +23,7 @@
 This repository contains the official implementation of the paper:
 
 > Liang Chen, Youyicun Lin, and Yuxuan Zhou.
-> **An efficient augmented Lagrangian method for dynamic optimal transport on surfaces based on second-order cone programming**.
+> **An efficient augmented Lagrangian framework for dynamic optimal transport on surfaces based on second-order cone programming reformulation**.
 > [arXiv:2506.08988](https://arxiv.org/abs/2506.08988), 2025.
 
 ## Installation
@@ -135,7 +135,7 @@ winget install GnuWin32.Make
 
 If you use this code in your research, please cite:
 
-- Liang Chen, Youyicun Lin, and Yuxuan Zhou. An efficient augmented Lagrangian method for dynamic optimal transport on surfaces based on second-order cone programming. arXiv:2506.08988, 2025.
+- Liang Chen, Youyicun Lin, and Yuxuan Zhou. An efficient augmented Lagrangian framework for dynamic optimal transport on surfaces based on second-order cone programming reformulation. arXiv:2506.08988, 2025.
 
 ## Contact
 

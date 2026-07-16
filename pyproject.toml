@@ -1,7 +1,7 @@
 [project]
 name = "DOTs-SOCP"
 version = "0.1.0"
-description = "DOTs-SOCP: An efficient augmented Lagrangian method for dynamic optimal transport on surfaces based on second-order cone programming"
+description = "DOTs-SOCP: An efficient augmented Lagrangian framework for dynamic optimal transport on surfaces based on second-order cone programming reformulation"
 readme = "README.md"
 requires-python = ">=3.12.9,<3.13"
 dependencies = [

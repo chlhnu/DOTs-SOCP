@@ -1,5 +1,5 @@
 DOTs-SOCP: 
-A Python Software for Dynamic Optimal Transport on Surface
+An efficient augmented Lagrangian framework for dynamic optimal transport on surfaces based on second-order cone programming reformulation
 
 Copyright (C) 2025 by
 Liang Chen, Youyicun Lin, and Yuxuan Zhou

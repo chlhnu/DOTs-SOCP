@@ -2,7 +2,7 @@
 ifeq ($(OS),Windows_NT)
 	PYTHON := .venv/Scripts/python.exe
 else
-	PYTHON := .venv/bin/python.exe
+	PYTHON := .venv/bin/python
 endif
 export PYTHONPATH=./
 export PYTHONIOENCODING=utf-8
@@ -47,31 +47,36 @@ check-python:
 # =======================================
 # Comparison table of numerical experiments
 # =======================================
-OUTDIR_MAIN := $(OUTDIR)_main
+OUTDIR_TABLE3 := $(OUTDIR)_table3
+OUTDIR_TABLE4 := $(OUTDIR)_table4
 tol ?= 1e-4
 
-$(OUTDIR_MAIN):
-	mkdir -p "$(OUTDIR_MAIN)"
+$(OUTDIR_TABLE3):
+	mkdir -p "$(OUTDIR_TABLE3)"
 
-# Common params
-PARAM = --ntime=31 --nit=10000 --time_limit=5000 --tol=$(tol)\
-		--save --outdir=$(OUTDIR_MAIN)
+$(OUTDIR_TABLE4):
+	mkdir -p "$(OUTDIR_TABLE4)"
 
+# Params
+PARAM = --ntime=31 --nit=10000 --time_limit=5000 --tol=$(tol) --save
 EXTRA_HILLS = --power_perceptual=0.5
 
+# Targets
 table3: EXAMPLES = ring refined_punctured_ball hand refined_hand refined_bunny refined_airplane refined_armadillo hills knots_3 knots_5
 table3: CONGESTIONs = 0.00
-table3: check-python $(OUTDIR_MAIN)
-	@$(MAKE) run_experiments EXAMPLES="$(EXAMPLES)" CONGESTIONs="$(CONGESTIONs)"
+table3: check-python $(OUTDIR_TABLE3)
+	@$(MAKE) run_experiments OUTDIR_EXPERIMENTS="$(OUTDIR_TABLE3)" EXAMPLES="$(EXAMPLES)" CONGESTIONs="$(CONGESTIONs)"
 
 table4: EXAMPLES = hills knots_3 knots_5
 table4: CONGESTIONs = 0.00 0.01 0.05
-table4: check-python $(OUTDIR_MAIN)
-	@$(MAKE) run_experiments EXAMPLES="$(EXAMPLES)" CONGESTIONs="$(CONGESTIONs)"
+table4: check-python $(OUTDIR_TABLE4)
+	@$(MAKE) run_experiments OUTDIR_EXPERIMENTS="$(OUTDIR_TABLE4)" EXAMPLES="$(EXAMPLES)" CONGESTIONs="$(CONGESTIONs)"
 
 run_experiments:
-	@for c_value in $(CONGESTIONs); do \
-		out_dir="$(OUTDIR_MAIN)/congestion_$${c_value//./\_}"; \
+	@set -e; \
+	for c_value in $(CONGESTIONs); do \
+		congestion_dir=$$(printf '%s' "$${c_value}" | tr '.' '_'); \
+		out_dir="$(OUTDIR_EXPERIMENTS)/congestion_$${congestion_dir}"; \
 		mkdir -p "$${out_dir}"; \
 		info_log_file="$${out_dir}/info.log"; \
 		for example in $(EXAMPLES); do \
@@ -84,8 +89,8 @@ run_experiments:
 				$(PARAM) \
 				--example=$${example} \
 				--congestion=$${c_value} \
-				--log_file=$${info_log_file} \
-				--outdir=$${out_dir} \
+				--log_file="$${info_log_file}" \
+				--outdir="$${out_dir}" \
 				$${_extra_params_hills}; \
 		done; \
 		$(PYTHON) replication/log2table.py --input "$${info_log_file}" --output "$${out_dir}/comparison_table.tex" "$${out_dir}/comparison_table.html"; \
