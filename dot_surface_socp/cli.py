@@ -45,7 +45,7 @@ def parse_args(parser=None, return_parser=False):
         "--example", default=None, type=str,
         help='''Select pre-defined example to run: [
                     "airplane", "armadillo", "hand", "punctured_ball", "bunny",
-                    "sphere", "ring", "knots_3", "knots_5", "hills"
+                    "sphere", "ring", "knots_3", "knots_5", "hills", "irregular_plane",
                     "refined_airplane", "refined_armadillo", "refined_hand", "refined_punctured_ball", "refined_bunny"
                 ]''')
     example_group.add_argument(

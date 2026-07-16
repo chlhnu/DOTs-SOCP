@@ -28,12 +28,13 @@ help: check-python
 	@echo ""
 	@echo "Benchmark"
 	@echo "------------------------------------"
-	@echo "  make main        	- Run the main comparison experiments corresponding to the tables"
-	@echo "  make true_error  	- Run a special example to compare with the exact transportation"
+	@echo "  make table3        - Run Table 3 experiments (all examples, congestion=0.00)"
+	@echo "  make table4        - Run Table 4 experiments (selected examples, multiple congestions)"
+	@echo "  make true_error    - Run a special example to compare with the exact transportation"
 	@echo ""
 	@echo "Environment Variables"
 	@echo "------------------------------------"
-	@echo "  tol=<tolerance> 	- Set the tolerance for the main experiments (default: $(tol))"
+	@echo "  tol=<tolerance>    - Set the tolerance for Table3 or Table4 experiments (default: $(tol))"
 	@echo ""
 
 check-python:
@@ -52,32 +53,32 @@ tol ?= 1e-4
 $(OUTDIR_MAIN):
 	mkdir -p "$(OUTDIR_MAIN)"
 
-# List of comparison experiments
-EXAMPLES = airplane 		refined_airplane \
-		   armadillo 		refined_armadillo \
-		   hand 			refined_hand \
-		   punctured_ball 	refined_punctured_ball \
-		   bunny 			refined_bunny \
-		   ring knots_3 knots_5 hills
-CONGESTIONs = 0.00 0.01 0.05
-
 # Common params
 PARAM = --ntime=31 --nit=10000 --time_limit=5000 --tol=$(tol)\
 		--save --outdir=$(OUTDIR_MAIN)
 
-# Extra params for `hills` example
 EXTRA_HILLS = --power_perceptual=0.5
 
-main: check-python $(OUTDIR_MAIN)
+table3: EXAMPLES = ring refined_punctured_ball hand refined_hand refined_bunny refined_airplane refined_armadillo hills knots_3 knots_5
+table3: CONGESTIONs = 0.00
+table3: check-python $(OUTDIR_MAIN)
+	@$(MAKE) run_experiments EXAMPLES="$(EXAMPLES)" CONGESTIONs="$(CONGESTIONs)"
+
+table4: EXAMPLES = hills knots_3 knots_5
+table4: CONGESTIONs = 0.00 0.01 0.05
+table4: check-python $(OUTDIR_MAIN)
+	@$(MAKE) run_experiments EXAMPLES="$(EXAMPLES)" CONGESTIONs="$(CONGESTIONs)"
+
+run_experiments:
 	@for c_value in $(CONGESTIONs); do \
 		out_dir="$(OUTDIR_MAIN)/congestion_$${c_value//./\_}"; \
 		mkdir -p "$${out_dir}"; \
 		info_log_file="$${out_dir}/info.log"; \
 		for example in $(EXAMPLES); do \
 			_extra_params_hills=''; \
-            if [ "$${example}" = "hills" ]; then \
-                _extra_params_hills=$(EXTRA_HILLS); \
-            fi; \
+			if [ "$${example}" = "hills" ]; then \
+				_extra_params_hills=$(EXTRA_HILLS); \
+			fi; \
 			echo "Running: example=$${example}, congestion=$${c_value}, $${_extra_params_hills}" >&2; \
 			$(PYTHON) replication/main.py \
 				$(PARAM) \
@@ -108,5 +109,5 @@ true_error: check-python $(OUTDIR_TRUE_ERROR)
 		--log_file="$(OUTDIR_TRUE_ERROR)/info.log";
 
 # =======================================
-all: main true_error
-.PHONY: main true_error
+all: table3 table4 true_error
+.PHONY: table3 table4 run_experiments true_error

@@ -286,6 +286,9 @@ def __match_example(name: str, is_pymesh: bool = False):
             else:
                 file_name = path_meshes / "plane.off"
             setting = settings.plane
+        case "irregular_plane":
+            file_name = path_meshes / "irregular_plane.off"
+            setting = settings.irregular_plane
         # ==== Refined examples
         case "refined_airplane":
             file_name = path_meshes / "refined_airplane_62.off"

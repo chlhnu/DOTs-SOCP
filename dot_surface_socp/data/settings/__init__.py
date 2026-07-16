@@ -19,6 +19,7 @@ from dot_surface_socp.data.settings import knots_5
 from dot_surface_socp.data.settings import hills
 from dot_surface_socp.data.settings import robot
 from dot_surface_socp.data.settings import plane
+from dot_surface_socp.data.settings import irregular_plane
 
 from dot_surface_socp.data.settings import refined_airplane
 from dot_surface_socp.data.settings import refined_armadillo
@@ -36,7 +37,7 @@ __all__ = [
     "square_regular"    ,
     "punctured_ball"    , "refined_punctured_ball"  ,
     "sphere"            ,
-    "bunny"             , "refined_bunny"               ,
+    "bunny"             , "refined_bunny"           ,
     "ring"              ,
     "eight"             ,
     "audi"              ,
@@ -45,4 +46,5 @@ __all__ = [
     "hills"             ,
     "robot"             ,
     "plane"             ,
+    "irregular_plane"   ,
 ]
