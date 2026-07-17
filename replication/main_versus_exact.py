@@ -4,6 +4,8 @@ It gives a comparison of the kkt error and the error versus the exact solution.
 """
 
 import sys
+import importlib
+import pkgutil
 from pathlib import Path
 root_of_import = Path(__file__).parent.parent
 if str(root_of_import) not in sys.path:
@@ -14,15 +16,33 @@ from dot_surface_socp import run_dot_surface_versus_exact
 from dot_surface_socp import print_example_info
 from dot_surface_socp import set_logging_level
 from dot_surface_socp import parse_args as parse_args_socp
+from dot_surface_socp.data import settings as example_settings
 from math import log
+
+def _get_examples_with_exact_transportation() -> list[str]:
+    """Return predefined examples whose settings define exact transportation."""
+    examples = []
+    for module_info in pkgutil.iter_modules(example_settings.__path__):
+        example_name = module_info.name
+        if example_name == "default":
+            continue
+
+        setting = importlib.import_module(
+            f"{example_settings.__name__}.{example_name}"
+        )
+        if callable(getattr(setting, "get_exact_transportation", None)):
+            examples.append(example_name)
+
+    return sorted(examples)
 
 def parse_args(return_parser=False):
     """Parse command line arguments for the script.
     """
     parser = parse_args_socp(return_parser=True)
     
-    # Restrict example argument to one that has defined the exact transportation
-    parser._option_string_actions['--example'].choices = ["plane"]
+    # Restrict examples to settings that define the exact transportation.
+    parser._option_string_actions['--example'].default = "irregular_plane"
+    parser._option_string_actions['--example'].choices = _get_examples_with_exact_transportation()
     parser._option_string_actions['--example'].help = \
         "Example to solve.\n" \
         "Require function definition of 'get_exact_transportation' in the setting file."

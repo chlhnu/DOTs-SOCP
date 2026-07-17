@@ -106,7 +106,7 @@ $(OUTDIR_TRUE_ERROR):
 
 true_error: check-python $(OUTDIR_TRUE_ERROR)
 	@$(PYTHON) replication/main_versus_exact.py \
-		--example=plane \
+		--example=irregular_plane \
 		--tol=0.00001 \
 		--nit=20000 \
 		--save \
